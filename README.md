@@ -1,4 +1,4 @@
-## WebRTC 기반 Web Chat App Client Side
+# WebRTC 기반 Web Chat App Client Side
 
 ## 디렉토리 구조 설명
 

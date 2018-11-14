@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import logo from '../../logo.svg';
 import './style.css';
+
+import HomePage from '../HomePage'
+import SignInPage from '../SignInPage'
+import SignUpPage from '../SignUpPage'
 
 class App extends Component {
   render() {
@@ -19,6 +24,15 @@ class App extends Component {
           >
             Learn React
           </a>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/signin" component={SignInPage} />
+            <Route path="/signup" component={SignUpPage} />
+            { /*
+            <Route path="/features" component={FeaturePage} />
+            <Route path="" component={NotFoundPage} /> 
+            */}
+          </Switch>
         </header>
       </div>
     );
