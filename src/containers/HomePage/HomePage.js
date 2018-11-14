@@ -33,7 +33,7 @@ class HomePage extends Component {
   	render() {
     	return (
       		<div className="HomePage">
-        		<h1>Home</h1>
+      			<VideoItem video={this.myVideo}/>
       		</div>
     	);
   	}

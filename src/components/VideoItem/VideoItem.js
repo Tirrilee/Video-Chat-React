@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const VideoItem = (props) => (
+const VideoItem = (video) => (
   <div className="video-item-wrapper">
-    <video className="video-item" ref={(ref) => {props.video = ref}}></video>
+    <video className="video-item" ref={(ref) => {video = ref}}></video>
   </div>
 );
 
