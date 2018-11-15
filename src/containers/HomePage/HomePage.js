@@ -6,8 +6,8 @@ import MediaHandler from '../../utils/MediaHandler';
 
 
 class HomePage extends Component {
-	
 
+	// state 설정
 	constructor(){
 	    super()
 	    
@@ -24,7 +24,7 @@ class HomePage extends Component {
 		// 미디어 권한 확인 후 영상 재생
 		this.mediaHandler.getPermissions()
 			.then((stream) => {
-				// console.log(this)
+				console.log(this)
 				// childNode로 보낼 _myVideo라는 ref 객체 생성
 				this._myVideo = React.createRef()
 				// state를 변경하고

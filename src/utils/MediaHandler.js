@@ -1,7 +1,7 @@
 export default class MediaHandler {
 	getPermissions() {
 		return new Promise((res, rej) => {
-			navigator.mediaDevices.getUserMedia({video: true, audio: { width: 1280, height: 720 }})
+			navigator.mediaDevices.getUserMedia({video: true, audio:  { facingMode: "user" }})
 				.then((stream) => {
 					res(stream)
 				})
