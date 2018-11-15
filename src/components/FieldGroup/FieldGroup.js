@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap'
+import { FormGroup, FormControl, HelpBlock } from 'react-bootstrap'
 import './style.css'
 
 class FieldGroup extends Component {
@@ -12,7 +11,6 @@ class FieldGroup extends Component {
 	    return (
 
 	      	<FormGroup controlId={id}>
-	      	{/* <ControlLabel>{label}</ControlLabel> */}
 				<FormControl {...props} />
 				{help && <HelpBlock>{help}</HelpBlock>}
 	    	</FormGroup>
