@@ -18,15 +18,16 @@ class SignUpPage extends Component {
 	      password2:null
 	    }
 	    this.onChange = this.onChange.bind(this)
-	    this.SignInsubmit = this.SignInsubmit.bind(this)
+	    this.SignUpsubmit = this.SignUpsubmit.bind(this)
   	}
 	// 회원가입 구현!
 	SignUpsubmit(e){
 		alert(`
-			ID : ${this.state.email}
-			PW : ${this.state.password}
-			TODO : 회원가입 기능 구현
-			TODO : 회원가입 후 로그인 페이지로 이동`)
+ID : ${this.state.email}
+PW : ${this.state.password}
+PW2 : ${this.state.password2}
+TODO : 회원가입 기능 구현
+TODO : 회원가입 후 로그인 페이지로 이동`)
 		e.preventDefault()
 	}
 
@@ -74,7 +75,7 @@ class SignUpPage extends Component {
 						placeholder="Password Confirm"
 						onChange={this.onChange}
 					/>
-					<Button bsStyle="secondary" onClick={() => this.toSignin()}>
+					<Button bsStyle="default" onClick={() => this.toSignin()}>
 						Go Back to Sign in
 					</Button>
 					<Button type="submit" bsStyle="primary">

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import FieldGroup from '../../components/FieldGroup'
 import { Button } from 'react-bootstrap'
@@ -69,5 +70,12 @@ TODO : 로그인 후 홈 페이지로 이동`)
     )
   }
 }
+
+/*
+SignInPage.propTypes = {
+  email: PropTypes.string.isRequired,
+  password : PropTypes.string.isRequired
+}
+*/
 
 export default SignInPage;
