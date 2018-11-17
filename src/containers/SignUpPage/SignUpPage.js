@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 import FieldGroup from '../../components/FieldGroup'
 import { Button } from 'react-bootstrap'
 
-import logo from '../../images/favicon.png';
+import logo from '../../images/favicon.png'
 import './style.css'
 
 class SignUpPage extends Component {
@@ -38,18 +38,10 @@ TODO : 회원가입 후 로그인 페이지로 이동`)
 
 	// Input Text 입력시
 	onChange(e){
-		// console.log(e.target.id)
-		// console.log(this)
-		// ID 값을 기준으로 State 변경
-		if (e.target.id==='EmailInput') {
-			this.setState({ email : e.target.value})
-		}
-		else if (e.target.id==='PasswordInput') {
-			this.setState({ password : e.target.value})
-		}
-		else if (e.target.id==='PasswordInput2') {
-			this.setState({ password2 : e.target.value})
-		}
+		// name을 기준으로 State 변경
+		const name = e.target.name
+		const value = e.target.value
+		this.setState({[name]: value})
 	}
   	render() {
     	return (
@@ -59,18 +51,21 @@ TODO : 회원가입 후 로그인 페이지로 이동`)
 		        <form onSubmit={this.SignUpsubmit}>
 					<FieldGroup
 						id="EmailInput"
+						name="email"
 						type="text"
 						placeholder="Email address"
 						onChange={this.onChange}
 					/>
 					<FieldGroup
 						id="PasswordInput"
+						name="password"
 						type="password"
 						placeholder="Password"
 						onChange={this.onChange}
 					/>
 					<FieldGroup
 						id="PasswordInput2"
+						name="password2"
 						type="password"
 						placeholder="Password Confirm"
 						onChange={this.onChange}

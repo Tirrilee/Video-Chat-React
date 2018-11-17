@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import FieldGroup from '../../components/FieldGroup'
 import { Button } from 'react-bootstrap'
 
-import logo from '../../images/favicon.png';
+import logo from '../../images/favicon.png'
 import './style.css'
 
 class SignInPage extends Component {
@@ -32,15 +31,10 @@ TODO : 로그인 후 홈 페이지로 이동`)
 	}
 	// Input Text 입력시
 	onChange(e){
-		// console.log(e.target.id)
-		// console.log(this)
-		// ID 값을 기준으로 State 변경
-		if (e.target.id==='EmailInput') {
-			this.setState({ email : e.target.value})
-		}
-		else if (e.target.id==='PasswordInput') {
-			this.setState({ password : e.target.value})
-		}
+		// name을 기준으로 State 변경
+		const name = e.target.name
+		const value = e.target.value
+		this.setState({[name]: value})
 	}
 
   	render() {
@@ -51,12 +45,14 @@ TODO : 로그인 후 홈 페이지로 이동`)
 		        <form onSubmit={this.SignInsubmit}>
 					<FieldGroup
 						id="EmailInput"
+						name="email"
 						type="text"
 						placeholder="Email address"
 						onChange={this.onChange}
 					/>
 					<FieldGroup
 						id="PasswordInput"
+						name="password"
 						type="password"
 						placeholder="Password"
 						onChange={this.onChange}
