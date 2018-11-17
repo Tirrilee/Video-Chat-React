@@ -45,3 +45,23 @@ code {
 .form-group {
     margin-bottom: 5px;
 }
+
+.btn-default {
+    color: rgb(255, 255, 255);
+    background-color: rgb(108, 117, 125);
+    border-color: rgb(108, 117, 125);
+}
+.btn-default:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(90, 98, 104);
+    border-color: rgb(90, 98, 104);
+}
+
+.btn-default.focus, .btn-default:focus {
+    box-shadow: 0 0 0 0.2rem rgba(108,117,125,.5);
+}
+
+
+
+
+
