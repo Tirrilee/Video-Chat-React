@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 import FieldGroup from '../../components/FieldGroup'
+import FormError from '../../components/FormError'
 import { Button } from 'react-bootstrap'
 
-import logo from '../../images/favicon.png';
+import Validations from '../../utils/Validations'
+
+import logo from '../../images/favicon.png'
 import './style.css'
 
 class SignUpPage extends Component {
@@ -15,10 +18,14 @@ class SignUpPage extends Component {
 	      // 이메일, 비밀번호
 	      email: null,
 	      password: null,
-	      password2:null
+	      password2: null,
+	      show: false,
+	      message: '',
 	    }
 	    this.onChange = this.onChange.bind(this)
 	    this.SignUpsubmit = this.SignUpsubmit.bind(this)
+	    this.onBlur = this.onBlur.bind(this)
+	    this.validations = Validations
   	}
 	// 회원가입 구현!
 	SignUpsubmit(e){
@@ -38,42 +45,56 @@ TODO : 회원가입 후 로그인 페이지로 이동`)
 
 	// Input Text 입력시
 	onChange(e){
-		// console.log(e.target.id)
-		// console.log(this)
-		// ID 값을 기준으로 State 변경
-		if (e.target.id==='EmailInput') {
-			this.setState({ email : e.target.value})
-		}
-		else if (e.target.id==='PasswordInput') {
-			this.setState({ password : e.target.value})
-		}
-		else if (e.target.id==='PasswordInput2') {
-			this.setState({ password2 : e.target.value})
-		}
+		// name을 기준으로 State 변경
+		const name = e.target.name
+		const value = e.target.value
+		this.setState({[name]: value})
 	}
+	// 포커스 아웃시
+	onBlur(e){
+		const name = e.target.name
+		const value = e.target.value
+		const validate = this.validations(name, value)
+		console.log(validate)
+		this.setState({
+			show : validate.show,
+			message: validate.message
+		})
+	}
+
   	render() {
     	return (
       		<div className="SignUpPage">
       			<img src={logo} className="App-logo" alt="logo" />
 	      		<h3>Please sign in</h3>
 		        <form onSubmit={this.SignUpsubmit}>
+		        	<FormError
+		        		show={this.state.show}
+		        		message={this.state.message}
+		        	/>
 					<FieldGroup
 						id="EmailInput"
+						name="email"
 						type="text"
 						placeholder="Email address"
 						onChange={this.onChange}
+						onBlur={this.onBlur}
 					/>
 					<FieldGroup
 						id="PasswordInput"
+						name="password"
 						type="password"
 						placeholder="Password"
 						onChange={this.onChange}
+						onBlur={this.onBlur}
 					/>
 					<FieldGroup
 						id="PasswordInput2"
+						name="password2"
 						type="password"
 						placeholder="Password Confirm"
 						onChange={this.onChange}
+						onBlur={this.onBlur}
 					/>
 					<Button bsStyle="default" onClick={() => this.toSignin()}>
 						Go Back to Sign in

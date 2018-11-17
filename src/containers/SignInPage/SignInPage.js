@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import FieldGroup from '../../components/FieldGroup'
+import FormError from '../../components/FormError'
 import { Button } from 'react-bootstrap'
 
-import logo from '../../images/favicon.png';
+import Validations from '../../utils/Validations'
+
+import logo from '../../images/favicon.png'
 import './style.css'
 
 class SignInPage extends Component {
@@ -16,10 +18,14 @@ class SignInPage extends Component {
 	    this.state = {
 	      // 이메일, 비밀번호
 	      email: null,
-	      password: null
+	      password: null,
+	      show: false,
+	      message: null,
 	    }
 	    this.onChange = this.onChange.bind(this)
 	    this.SignInsubmit = this.SignInsubmit.bind(this)
+	    this.onBlur = this.onBlur.bind(this)
+	    this.validations = Validations
   	}
 	// 로그인 구현!
 	SignInsubmit(e){
@@ -32,15 +38,22 @@ TODO : 로그인 후 홈 페이지로 이동`)
 	}
 	// Input Text 입력시
 	onChange(e){
-		// console.log(e.target.id)
-		// console.log(this)
-		// ID 값을 기준으로 State 변경
-		if (e.target.id==='EmailInput') {
-			this.setState({ email : e.target.value})
-		}
-		else if (e.target.id==='PasswordInput') {
-			this.setState({ password : e.target.value})
-		}
+		// name을 기준으로 State 변경
+		const name = e.target.name
+		const value = e.target.value
+		this.setState({[name]: value})
+		
+	}
+	// 포커스 아웃시
+	onBlur(e){
+		const name = e.target.name
+		const value = e.target.value
+		const validate = this.validations(name, value)
+		console.log(validate)
+		this.setState({
+			show : validate.show,
+			message: validate.message
+		})
 	}
 
   	render() {
@@ -49,17 +62,25 @@ TODO : 로그인 후 홈 페이지로 이동`)
       			<img src={logo} className="App-logo" alt="logo" />
 	      		<h3>Please sign in</h3>
 		        <form onSubmit={this.SignInsubmit}>
+		        	<FormError
+		        		show={this.state.show}
+		        		message={this.state.message}
+		        	/>
 					<FieldGroup
 						id="EmailInput"
+						name="email"
 						type="text"
 						placeholder="Email address"
 						onChange={this.onChange}
+						onBlur={this.onBlur}
 					/>
 					<FieldGroup
 						id="PasswordInput"
+						name="password"
 						type="password"
 						placeholder="Password"
 						onChange={this.onChange}
+						onBlur={this.onBlur}
 					/>
 					<p>you want <Link to="/signup">create account?</Link></p>
 					<Button type="submit" bsStyle="primary">

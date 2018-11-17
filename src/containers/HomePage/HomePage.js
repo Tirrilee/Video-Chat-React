@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
 
-import VideoItem from '../../components/VideoItem';
-import MediaHandler from '../../utils/MediaHandler';
+import VideoItem from '../../components/VideoItem'
+import MediaHandler from '../../utils/MediaHandler'
 
 import './style.css'
 
