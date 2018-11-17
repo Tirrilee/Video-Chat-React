@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import FieldGroup from '../../components/FieldGroup'
+import FormError from '../../components/FormError'
 import { Button } from 'react-bootstrap'
 
 import logo from '../../images/favicon.png'
@@ -15,7 +16,9 @@ class SignUpPage extends Component {
 	      // 이메일, 비밀번호
 	      email: null,
 	      password: null,
-	      password2:null
+	      password2:null,
+	      show:'true',
+	      message:'error message',
 	    }
 	    this.onChange = this.onChange.bind(this)
 	    this.SignUpsubmit = this.SignUpsubmit.bind(this)
@@ -49,6 +52,10 @@ TODO : 회원가입 후 로그인 페이지로 이동`)
       			<img src={logo} className="App-logo" alt="logo" />
 	      		<h3>Please sign in</h3>
 		        <form onSubmit={this.SignUpsubmit}>
+		        	<FormError
+		        		show={this.state.show}
+		        		message={this.state.message}
+		        	/>
 					<FieldGroup
 						id="EmailInput"
 						name="email"
