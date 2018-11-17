@@ -5,6 +5,8 @@ import FieldGroup from '../../components/FieldGroup'
 import FormError from '../../components/FormError'
 import { Button } from 'react-bootstrap'
 
+import Validations from '../../utils/Validations'
+
 import logo from '../../images/favicon.png'
 import './style.css'
 
@@ -17,11 +19,13 @@ class SignInPage extends Component {
 	      // 이메일, 비밀번호
 	      email: null,
 	      password: null,
-	      show:'true',
-	      message:'error message',
+	      show: false,
+	      message: null,
 	    }
 	    this.onChange = this.onChange.bind(this)
 	    this.SignInsubmit = this.SignInsubmit.bind(this)
+	    this.onBlur = this.onBlur.bind(this)
+	    this.validations = Validations
   	}
 	// 로그인 구현!
 	SignInsubmit(e){
@@ -38,6 +42,18 @@ TODO : 로그인 후 홈 페이지로 이동`)
 		const name = e.target.name
 		const value = e.target.value
 		this.setState({[name]: value})
+		
+	}
+	// 포커스 아웃시
+	onBlur(e){
+		const name = e.target.name
+		const value = e.target.value
+		const validate = this.validations(name, value)
+		console.log(validate)
+		this.setState({
+			show : validate.show,
+			message: validate.message
+		})
 	}
 
   	render() {
@@ -56,6 +72,7 @@ TODO : 로그인 후 홈 페이지로 이동`)
 						type="text"
 						placeholder="Email address"
 						onChange={this.onChange}
+						onBlur={this.onBlur}
 					/>
 					<FieldGroup
 						id="PasswordInput"
@@ -63,6 +80,7 @@ TODO : 로그인 후 홈 페이지로 이동`)
 						type="password"
 						placeholder="Password"
 						onChange={this.onChange}
+						onBlur={this.onBlur}
 					/>
 					<p>you want <Link to="/signup">create account?</Link></p>
 					<Button type="submit" bsStyle="primary">

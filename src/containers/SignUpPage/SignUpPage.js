@@ -4,6 +4,8 @@ import FieldGroup from '../../components/FieldGroup'
 import FormError from '../../components/FormError'
 import { Button } from 'react-bootstrap'
 
+import Validations from '../../utils/Validations'
+
 import logo from '../../images/favicon.png'
 import './style.css'
 
@@ -16,12 +18,14 @@ class SignUpPage extends Component {
 	      // 이메일, 비밀번호
 	      email: null,
 	      password: null,
-	      password2:null,
-	      show:'true',
-	      message:'error message',
+	      password2: null,
+	      show: false,
+	      message: '',
 	    }
 	    this.onChange = this.onChange.bind(this)
 	    this.SignUpsubmit = this.SignUpsubmit.bind(this)
+	    this.onBlur = this.onBlur.bind(this)
+	    this.validations = Validations
   	}
 	// 회원가입 구현!
 	SignUpsubmit(e){
@@ -46,6 +50,18 @@ TODO : 회원가입 후 로그인 페이지로 이동`)
 		const value = e.target.value
 		this.setState({[name]: value})
 	}
+	// 포커스 아웃시
+	onBlur(e){
+		const name = e.target.name
+		const value = e.target.value
+		const validate = this.validations(name, value)
+		console.log(validate)
+		this.setState({
+			show : validate.show,
+			message: validate.message
+		})
+	}
+
   	render() {
     	return (
       		<div className="SignUpPage">
@@ -62,6 +78,7 @@ TODO : 회원가입 후 로그인 페이지로 이동`)
 						type="text"
 						placeholder="Email address"
 						onChange={this.onChange}
+						onBlur={this.onBlur}
 					/>
 					<FieldGroup
 						id="PasswordInput"
@@ -69,6 +86,7 @@ TODO : 회원가입 후 로그인 페이지로 이동`)
 						type="password"
 						placeholder="Password"
 						onChange={this.onChange}
+						onBlur={this.onBlur}
 					/>
 					<FieldGroup
 						id="PasswordInput2"
@@ -76,6 +94,7 @@ TODO : 회원가입 후 로그인 페이지로 이동`)
 						type="password"
 						placeholder="Password Confirm"
 						onChange={this.onChange}
+						onBlur={this.onBlur}
 					/>
 					<Button bsStyle="default" onClick={() => this.toSignin()}>
 						Go Back to Sign in
