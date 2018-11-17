@@ -1,0 +1,15 @@
+button{
+	width: 100%;
+}
+h3{
+	color: #555;
+	margin: 10px 0px 20px 0px;
+}
+form{
+	min-width: 250px;
+}
+p{
+	color: #555;
+	font-size: 13px;
+	margin-bottom: 5px;
+}
